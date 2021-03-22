@@ -30,3 +30,10 @@ Clients connect to merchant nodes. In order to make micro transaction they must 
 into escrow into a merchant address. They can then make as many microtransactions to any clients connected
 to the same merchant for free and instantly.
 Once they are done making microtransactions they can then withraw their bitcoins from the merchant address.
+
+# Todo
+
+1. Request address from merchant, merchant creates address, send back to client and adds it to it's pool
+2. This address is now associated with this client in the pool
+3. A client can request to transfer money to another address in the merchant pool
+4. the transaction is validated by checking the balance and minusing the total previous transactions
