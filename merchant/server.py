@@ -4,10 +4,18 @@ from werkzeug.serving import run_simple
 from jsonrpc import JSONRPCResponseManager, dispatcher
 
 import merchant
+import crypto
 
 
 @dispatcher.add_method
 def request_address(**kwargs):
+    request_str = "".join([value for key, value in kwargs.items() if key != "signature"])
+    signature = kwargs["signature"]
+    public_key = kwargs["public_key"]
+
+    valid = crypto.verify_request(public_key, signature, request_str)
+    print(valid)
+
     address = merchant.create_new_address()
     return {"address": address}
 

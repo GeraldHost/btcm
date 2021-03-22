@@ -6,10 +6,5 @@ from hashlib import sha256
 
 def verify_request(public_key, signature, request_str):
     vk = ecdsa.VerifyingKey.from_string(bytes.fromhex(public_key),
-                                        curve=ecdsa.SECP256k1,
-                                        hashfunc=sha256)
-    return vk.verify(bytes.fromhex(signature), request_str)
-
-
-def request_str():
-    return 0
+                                        curve=ecdsa.SECP256k1)
+    return vk.verify(bytes.fromhex(signature), bytes(request_str, encoding="utf8"))
